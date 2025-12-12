@@ -390,6 +390,19 @@ public class FeedServiceImpl implements FeedService {
 		return feedVos.isEmpty() ? null : feedVos.get(0);
 	}
 
+	@Override
+	public FeedVo getLatestByUser(Long targetUid, Long requesterUid) {
+		Feed latest = feedDao.lambdaQuery()
+			.eq(Feed::getUid, targetUid)
+			.orderByDesc(Feed::getCreateTime)
+			.last("limit 1")
+			.one();
+		if (ObjectUtil.isNull(latest)) {
+			return null;
+		}
+		return feedDetail(latest.getId(), requesterUid);
+	}
+
 	/**
 	 * 获取朋友圈的可见权限
 	 * @param feedId

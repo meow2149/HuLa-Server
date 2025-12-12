@@ -1,6 +1,7 @@
 package com.luohuo.flex.im.domain.vo.resp.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import com.luohuo.flex.im.domain.vo.req.feed.FeedVo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -52,6 +53,9 @@ public class UserInfoResp implements Serializable {
 	@Schema(description = "是否开启上下文[AI模块]")
 	private Boolean context;
 
-	@Schema(description = "调用次数[AI模块]")
-	private Integer num;
+    @Schema(description = "调用次数[AI模块]")
+    private Integer num;
+
+    @Schema(description = "最新动态")
+    private FeedVo latestFeed;
 }

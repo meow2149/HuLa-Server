@@ -207,11 +207,7 @@ public class ResourceBiz {
             log.debug("level={}, label={}", level, item.getName());
             RouterMeta meta = null;
             if (StrUtil.isNotEmpty(item.getMetaJson()) && !StrPool.BRACE.equals(item.getMetaJson())) {
-                try {
-                    meta = JsonUtil.parse(item.getMetaJson(), RouterMeta.class);
-                } catch (Exception ignored) {
-                    try { meta = objectMapper.readValue(item.getMetaJson(), RouterMeta.class); } catch (Exception ignored2) {}
-                }
+                meta = JsonUtil.parseJson(item.getMetaJson(), RouterMeta.class);
             }
             if (meta == null && item.getMeta() != null) {
                 meta = item.getMeta();
@@ -261,11 +257,7 @@ public class ResourceBiz {
             log.debug("level={}, label={}", level, item.getName());
             RouterMeta meta = null;
             if (StrUtil.isNotEmpty(item.getMetaJson()) && !StrPool.BRACE.equals(item.getMetaJson())) {
-                try {
-                    meta = JsonUtil.parse(item.getMetaJson(), RouterMeta.class);
-                } catch (Exception ignored) {
-                    try { meta = objectMapper.readValue(item.getMetaJson(), RouterMeta.class); } catch (Exception ignored2) {}
-                }
+                meta = JsonUtil.parseJson(item.getMetaJson(), RouterMeta.class);
             }
             if (meta == null && item.getMeta() != null) {
                 meta = item.getMeta();
@@ -346,11 +338,7 @@ public class ResourceBiz {
             RouterMeta meta = null;
             if (item.getMeta() == null) {
                 if (StrUtil.isNotEmpty(item.getMetaJson()) && !StrPool.BRACE.equals(item.getMetaJson())) {
-                    try {
-                        meta = JsonUtil.parse(item.getMetaJson(), RouterMeta.class);
-                    } catch (Exception ignored) {
-                        try { meta = objectMapper.readValue(item.getMetaJson(), RouterMeta.class); } catch (Exception ignored2) {}
-                    }
+                    meta = JsonUtil.parseJson(item.getMetaJson(), RouterMeta.class);
                 }
                 if (meta == null && item.getMeta() != null) {
                     meta = item.getMeta();

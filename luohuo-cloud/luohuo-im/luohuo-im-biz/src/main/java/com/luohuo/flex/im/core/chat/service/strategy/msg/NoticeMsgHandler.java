@@ -1,6 +1,7 @@
 package com.luohuo.flex.im.core.chat.service.strategy.msg;
 
 import com.luohuo.flex.im.common.utils.discover.PrioritizedUrlDiscover;
+import com.luohuo.basic.validator.utils.AssertUtil;
 import com.luohuo.flex.im.domain.UrlInfo;
 import com.luohuo.flex.im.common.utils.sensitiveword.SensitiveWordBs;
 import com.luohuo.flex.im.core.chat.dao.MessageDao;
@@ -30,6 +31,11 @@ public class NoticeMsgHandler extends AbstractMsgHandler<NoticeMsgDTO> {
     MessageTypeEnum getMsgTypeEnum() {
         return MessageTypeEnum.NOTICE;
     }
+
+	@Override
+	protected void checkMsg(NoticeMsgDTO body, Long roomId, Long uid) {
+		AssertUtil.isFalse(sensitiveWordBs.hasSensitiveWord(body.getContent()), "消息包含敏感词，请重新输入");
+	}
 
 	@Override
 	protected void saveMsg(Message message, NoticeMsgDTO body) {

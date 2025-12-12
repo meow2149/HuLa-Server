@@ -23,6 +23,13 @@ public interface FeedService {
 
 	FeedVo feedDetail(Long feedId, Long uid);
 
+	/**
+	 * 获取指定用户最新一条可见的朋友圈
+	 * @param targetUid 被查看的用户ID
+	 * @param requesterUid 当前查看人ID
+	 */
+	FeedVo getLatestByUser(Long targetUid, Long requesterUid);
+
 	FeedPermission getFeedPermission(Long uid, Long feedId);
 
 	Boolean editFeed(Long uid, FeedParam param);

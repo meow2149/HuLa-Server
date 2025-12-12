@@ -13,6 +13,7 @@ import com.luohuo.flex.im.domain.entity.ItemConfig;
 import com.luohuo.flex.im.domain.entity.User;
 import com.luohuo.flex.im.domain.entity.UserBackpack;
 import com.luohuo.flex.im.domain.enums.ItemTypeEnum;
+import com.luohuo.flex.im.enums.UserTypeEnum;
 import com.luohuo.flex.im.domain.vo.response.ChatMemberListResp;
 import com.luohuo.flex.model.entity.base.IpDetail;
 import com.luohuo.flex.model.entity.base.IpInfo;
@@ -83,12 +84,18 @@ public class UserSummaryCache extends AbstractRedisStringCache<Long, SummeryInfo
 			summeryInfoDTO.setLocPlace(Optional.ofNullable(user.getIpInfo()).map(IpInfo::getUpdateIpDetail).map(IpDetail::getCity).orElse(null));
             summeryInfoDTO.setWearingItemId(user.getItemId());
             summeryInfoDTO.setItemIds(userBackpacks.stream().map(UserBackpack::getItemId).collect(Collectors.toList()));
-			summeryInfoDTO.setUserType(user.getUserType());
-			summeryInfoDTO.setEmail(user.getEmail());
-			summeryInfoDTO.setOpenId(user.getOpenId());
-			summeryInfoDTO.setSex(user.getSex());
-			summeryInfoDTO.setResume(user.getResume());
-			summeryInfoDTO.setLastOptTime(user.getLastOptTime());
+            summeryInfoDTO.setUserType(user.getUserType());
+            summeryInfoDTO.setEmail(user.getEmail());
+            summeryInfoDTO.setOpenId(user.getOpenId());
+            summeryInfoDTO.setSex(user.getSex());
+            summeryInfoDTO.setResume(user.getResume());
+            summeryInfoDTO.setLastOptTime(user.getLastOptTime());
+            if (Objects.equals(user.getUserType(), UserTypeEnum.BOT.getValue())) {
+                summeryInfoDTO.setWearingItemId(null);
+                summeryInfoDTO.setItemIds(Collections.emptyList());
+                summeryInfoDTO.setEmail(null);
+                summeryInfoDTO.setResume(null);
+            }
             return summeryInfoDTO;
         }).filter(Objects::nonNull).collect(Collectors.toMap(SummeryInfoDTO::getUid, Function.identity()));
     }

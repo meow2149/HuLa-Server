@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 05/12/2025 13:33:06
+ Date: 12/12/2025 08:54:58
 */
 
 SET NAMES utf8mb4;
@@ -66,9 +66,9 @@ INSERT INTO `base_config` VALUES (107, 'youdao_config', '{\"title\":\"有道AppS
 INSERT INTO `base_config` VALUES (108, 'tencent_config', '{\"title\":\"腾讯ApiKey\",\"componentType\":\"text\",\"value\":\"\",\"configKey\":\"tencentApiKey\",\"type\":\"tencent_config\"}', 'tencentApiKey', '50i2McgXHpY8e6T3qXMKEzsk1w45zoa', 0, '2025-12-04 07:23:36.000', '2025-12-05 05:28:56.749', 3, NULL, 0);
 INSERT INTO `base_config` VALUES (109, 'tencent_config', '{\"title\":\"腾讯SecretId\",\"componentType\":\"text\",\"value\":\"\",\"configKey\":\"tencentSecretId\",\"type\":\"tencent_config\"}', 'tencentSecretId', 'AKI2z0EVlw1zsfHnS2H4nQs8KU2yX0JVV', 0, '2025-12-04 07:23:36.000', '2025-12-05 05:28:54.258', 3, NULL, 0);
 INSERT INTO `base_config` VALUES (110, 'tencent_config', '{\"title\":\"腾讯MapKey\",\"componentType\":\"text\",\"value\":\"\",\"configKey\":\"tencentMapKey\",\"type\":\"tencent_config\"}', 'tencentMapKey', 'PF1-34XCC-J6N2D-A3Q3-5K4F4G', 0, '2025-12-04 07:23:36.000', '2025-12-05 05:28:51.944', 3, NULL, 0);
-INSERT INTO `base_config` VALUES (111, 'ice_server_config', '{\"title\":\"ICE Server URLs(JSON数组或逗号分隔)\",\"componentType\":\"text\",\"value\":\"[]\",\"configKey\":\"iceServerUrls\",\"type\":\"ice_server_config\"}', 'iceServerUrls', '[]', 0, '2025-12-04 07:23:36.000', '2025-12-04 07:23:36.000', 3, NULL, 0);
-INSERT INTO `base_config` VALUES (112, 'ice_server_config', '{\"title\":\"ICE Server Username\",\"componentType\":\"text\",\"value\":\"\",\"configKey\":\"iceServerUsername\",\"type\":\"ice_server_config\"}', 'iceServerUsername', '', 0, '2025-12-04 07:23:36.000', '2025-12-04 07:23:36.000', 3, NULL, 0);
-INSERT INTO `base_config` VALUES (113, 'ice_server_config', '{\"title\":\"ICE Server Credential\",\"componentType\":\"text\",\"value\":\"\",\"configKey\":\"iceServerCredential\",\"type\":\"ice_server_config\"}', 'iceServerCredential', '', 0, '2025-12-04 07:23:36.000', '2025-12-04 07:23:36.000', 3, NULL, 0);
+INSERT INTO `base_config` VALUES (111, 'ice_server_config', '{\"title\":\"ICE Server URLs(JSON数组或逗号分隔)\",\"componentType\":\"text\",\"value\":\"[]\",\"configKey\":\"iceServerUrls\",\"type\":\"ice_server_config\"}', 'iceServerUrls', '[]', 0, '2025-12-04 07:23:39.000', '2025-12-04 07:23:39.000', 3, NULL, 0);
+INSERT INTO `base_config` VALUES (112, 'ice_server_config', '{\"title\":\"ICE Server Username\",\"componentType\":\"text\",\"value\":\"\",\"configKey\":\"iceServerUsername\",\"type\":\"ice_server_config\"}', 'iceServerUsername', '', 0, '2025-12-04 07:23:39.000', '2025-12-04 07:23:39.000', 3, NULL, 0);
+INSERT INTO `base_config` VALUES (113, 'ice_server_config', '{\"title\":\"ICE Server Credential\",\"componentType\":\"text\",\"value\":\"\",\"configKey\":\"iceServerCredential\",\"type\":\"ice_server_config\"}', 'iceServerCredential', '', 0, '2025-12-04 07:23:39.000', '2025-12-04 07:23:39.000', 3, NULL, 0);
 INSERT INTO `base_config` VALUES (114, 'translate_config', '{\"title\":\"翻译引擎\",\"componentType\":\"text\",\"value\":\"youdao\",\"configKey\":\"translateDefault\",\"type\":\"translate_config\"}', 'translateDefault', 'youdao', 0, '2025-12-04 10:42:44.000', '2025-12-04 10:42:44.000', 3, NULL, 0);
 
 -- ----------------------------
@@ -88,7 +88,7 @@ CREATE TABLE `im_announcements`  (
   `is_del` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除',
   `tenant_id` bigint NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 94625993966593 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_as_ci COMMENT = '聊天公告表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 104683855277057 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_as_ci COMMENT = '聊天公告表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_announcements
@@ -165,7 +165,7 @@ CREATE TABLE `im_contact`  (
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE,
   INDEX `idx_contact_room_uid_hide`(`room_id` ASC, `uid` ASC, `hide` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 69082079619944 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '会话列表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 69082079622096 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '会话列表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_contact
@@ -338,7 +338,7 @@ CREATE TABLE `im_group_member`  (
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE,
   INDEX `idx_group_member_uid_isdel_groupid`(`uid` ASC, `is_del` ASC, `group_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103117702162434 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '群成员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105220961071106 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '群成员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_group_member
@@ -401,7 +401,7 @@ CREATE TABLE `im_message`  (
   INDEX `idx_from_uid`(`from_uid` ASC) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103117702162440 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '消息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105220961071112 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '消息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_message
@@ -431,7 +431,7 @@ CREATE TABLE `im_message_mark`  (
   INDEX `idx_uid`(`uid` ASC) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102919517104129 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '消息标记表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 104399619877889 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '消息标记表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_message_mark
@@ -463,7 +463,7 @@ CREATE TABLE `im_notice`  (
   INDEX `idx_receiver_type`(`receiver_id` ASC, `event_type` ASC) USING BTREE,
   INDEX `idx_sender`(`sender_id` ASC) USING BTREE,
   INDEX `idx_related`(`apply_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102865033095171 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '统一通知表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105095249391619 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '统一通知表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_notice
@@ -513,12 +513,12 @@ CREATE TABLE `im_room`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103117702162435 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '房间表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105220961071107 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '房间表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_room
 -- ----------------------------
-INSERT INTO `im_room` VALUES (1, 1, 1, '2025-12-05 13:12:56.750', 103117702162439, NULL, '2024-07-10 11:17:15.521', '2025-12-05 05:12:56.772', 1, 1, NULL, 0);
+INSERT INTO `im_room` VALUES (1, 1, 1, '2025-12-11 08:30:32.937', 105220961071111, NULL, '2024-07-10 11:17:15.521', '2025-12-11 00:30:32.982', 1, 1, NULL, 0);
 
 -- ----------------------------
 -- Table structure for im_room_friend
@@ -543,7 +543,7 @@ CREATE TABLE `im_room_friend`  (
   INDEX `idx_room_id`(`room_id` ASC) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103117702162436 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '单聊房间表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105220961071108 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '单聊房间表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_room_friend
@@ -572,7 +572,7 @@ CREATE TABLE `im_room_group`  (
   INDEX `idx_room_id`(`room_id` ASC) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 101643924399107 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '群聊房间表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 104683683310602 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '群聊房间表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_room_group
@@ -654,13 +654,13 @@ CREATE TABLE `im_user`  (
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE,
   INDEX `idx_active_status_last_opt_time`(`last_opt_time` ASC) USING BTREE,
   INDEX `account_UNIQUE`(`account` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103117702162433 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105220961071105 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_user
 -- ----------------------------
-INSERT INTO `im_user` VALUES (1, 61170828519936, 2, 'HuLa小管家', '022', '', 'bot', NULL, '', 0, '2025-07-07 15:27:01.711', '{\"createIp\": \"206.237.119.215\", \"updateIp\": \"116.24.64.57\", \"createIpDetail\": null, \"updateIpDetail\": {\"ip\": \"116.24.64.57\", \"isp\": \"电信\", \"area\": \"\", \"city\": \"深圳\", \"isp_id\": null, \"region\": \"广东省\", \"city_id\": null, \"country\": \"中国\", \"region_id\": null, \"country_id\": null}}', 6, 0, '', '2025-03-27 04:23:08.393', '2025-12-02 11:37:40.510', 0, 61170828529941, 0, '2025-05-09 18:24:37.089', 0, 1, 10);
-INSERT INTO `im_user` VALUES (10937855681024, 61170828519937, 3, 'Dawn', 'https://cdn.hulaspark.com/avatar/2439646234/97320189485dca88dcc7a70054445a56.webp', '2439646234@qq.com', '13275346112', NULL, '', 11, '2025-07-30 15:31:57.651', '{\"createIp\": \"206.237.119.215\", \"updateIp\": \"116.24.64.57\", \"createIpDetail\": null, \"updateIpDetail\": {\"ip\": \"116.24.64.57\", \"isp\": \"电信\", \"area\": \"\", \"city\": \"深圳\", \"isp_id\": null, \"region\": \"广东省\", \"city_id\": null, \"country\": \"中国\", \"region_id\": null, \"country_id\": null}}', 6, 0, '', '2025-03-27 04:23:08.393', '2025-12-03 08:33:26.968', 0, 61170828529941, 0, '2025-09-20 21:35:31.415', 0, 1, 10);
+INSERT INTO `im_user` VALUES (1, 61170828519936, 2, 'HuLa小管家', '022', '', 'bot', NULL, '', 0, '2025-07-07 15:27:01.711', '{\"createIp\": \"206.237.119.215\", \"updateIp\": \"113.89.33.218\", \"createIpDetail\": null, \"updateIpDetail\": {\"ip\": \"113.89.33.218\", \"isp\": \"电信\", \"area\": \"\", \"city\": \"深圳\", \"isp_id\": null, \"region\": \"广东省\", \"city_id\": null, \"country\": \"中国\", \"region_id\": null, \"country_id\": null}}', 6, 0, '', '2025-03-27 04:23:08.393', '2025-12-08 16:54:04.446', 0, NULL, 0, '2025-05-09 18:24:37.089', 0, 1, 10);
+INSERT INTO `im_user` VALUES (10937855681024, 61170828519937, 3, 'Dawn', 'https://cdn.hulaspark.com/avatar/2439646234/97320189485dca88dcc7a70054445a56.webp', '2439646234@qq.com', '13275346112', NULL, '', 11, '2025-07-30 15:31:57.651', '{\"createIp\": \"206.237.119.215\", \"updateIp\": \"120.231.232.9\", \"createIpDetail\": null, \"updateIpDetail\": {\"ip\": \"120.231.232.9\", \"isp\": \"移动\", \"area\": \"\", \"city\": \"深圳\", \"isp_id\": null, \"region\": \"广东省\", \"city_id\": null, \"country\": \"中国\", \"region_id\": null, \"country_id\": null}}', 6, 0, '', '2025-03-27 04:23:08.393', '2025-12-10 21:30:15.675', 0, 61170828529941, 0, '2025-09-20 21:35:31.415', 0, 1, 10);
 
 -- ----------------------------
 -- Table structure for im_user_apply
@@ -690,7 +690,7 @@ CREATE TABLE `im_user_apply`  (
   INDEX `idx_target_id`(`target_id` ASC) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102865033095169 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户申请表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105095249391617 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户申请表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_user_apply
@@ -717,7 +717,7 @@ CREATE TABLE `im_user_backpack`  (
   INDEX `idx_uid`(`uid` ASC) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103117702162443 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户背包表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105220961071115 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户背包表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_user_backpack
@@ -793,7 +793,7 @@ CREATE TABLE `im_user_friend`  (
   INDEX `idx_uid_friend_uid`(`uid` ASC, `friend_uid` ASC) USING BTREE,
   INDEX `idx_create_time`(`create_time` ASC) USING BTREE,
   INDEX `idx_update_time`(`update_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103117702162438 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户联系人表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105220961071110 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户联系人表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of im_user_friend
@@ -971,7 +971,7 @@ CREATE TABLE `secure_invoke_record`  (
   `is_del` tinyint NOT NULL DEFAULT 0 COMMENT '是否删除',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_next_retry_time`(`next_retry_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103117702162442 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '本地消息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105220961071114 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '本地消息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of secure_invoke_record
@@ -990,7 +990,7 @@ CREATE TABLE `worker_node`  (
   `modified` timestamp NULL DEFAULT NULL COMMENT '修改时间',
   `created` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 245 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'DB;WorkerID Assigner for UID Generator' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 250 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'DB;WorkerID Assigner for UID Generator' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of worker_node

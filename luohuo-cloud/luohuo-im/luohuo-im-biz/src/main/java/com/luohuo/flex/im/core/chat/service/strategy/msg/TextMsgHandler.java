@@ -52,6 +52,7 @@ public class TextMsgHandler extends AbstractMsgHandler<TextMsgReq> {
             AssertUtil.isNotEmpty(replyMsg, "回复消息不存在");
             AssertUtil.equal(replyMsg.getRoomId(), roomId, "只能回复相同会话内的消息");
         }
+        AssertUtil.isFalse(sensitiveWordBs.hasSensitiveWord(body.getContent()), "消息包含敏感词，请重新输入");
         if (CollectionUtil.isNotEmpty(body.getAtUidList())) {
             //前端传入的@用户列表可能会重复，需要去重
             List<Long> atUidList = body.getAtUidList().stream().distinct().collect(Collectors.toList());

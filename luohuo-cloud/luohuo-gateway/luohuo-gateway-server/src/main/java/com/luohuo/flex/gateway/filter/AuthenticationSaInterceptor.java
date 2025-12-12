@@ -59,7 +59,7 @@ public class AuthenticationSaInterceptor implements WebFilter, Ordered {
         exchange.getAttributes().put(SaReactorHolder.EXCHANGE_KEY, chain);
 
         // ---------- 全局认证处理 仅后台需要鉴权
-        if("1".equals(exchange.getRequest().getHeaders().getFirst(JWT_KEY_SYSTEM_TYPE))){
+        if("10".equals(exchange.getRequest().getHeaders().getFirst(JWT_KEY_SYSTEM_TYPE))){
 			try {
 				// 写入全局上下文 (同步)
 				SaReactorSyncHolder.setContext(exchange);

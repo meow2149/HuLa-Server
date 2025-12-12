@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 05/12/2025 13:33:00
+ Date: 12/12/2025 08:54:53
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `ai_api_key`  (
   `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
   `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 101622399644673 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI API 密钥表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 103155220632065 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI API 密钥表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ai_api_key
@@ -106,7 +106,7 @@ CREATE TABLE `ai_chat_conversation`  (
   `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
   `tenant_id` bigint NULL DEFAULT NULL COMMENT '租户编号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103094306752513 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI 聊天对话表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 104976064475137 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI 聊天对话表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ai_chat_conversation
@@ -138,7 +138,7 @@ CREATE TABLE `ai_chat_message`  (
   `tenant_id` bigint NOT NULL DEFAULT 1 COMMENT '租户编号',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_msg_type`(`msg_type` ASC) USING BTREE COMMENT '消息内容类型索引'
-) ENGINE = InnoDB AUTO_INCREMENT = 103085163169795 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI 聊天消息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 104860544949251 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI 聊天消息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ai_chat_message
@@ -349,7 +349,7 @@ CREATE TABLE `ai_model`  (
   INDEX `idx_user_id`(`user_id` ASC) USING BTREE,
   INDEX `idx_public_status`(`public_status` ASC) USING BTREE,
   INDEX `idx_user_public`(`user_id` ASC, `public_status` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 100761590051841 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI 模型表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 103155279352321 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI 模型表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ai_model
@@ -372,7 +372,7 @@ CREATE TABLE `ai_model_usage_record`  (
   `tenant_id` bigint NOT NULL DEFAULT 1 COMMENT '租户编号',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_user_model`(`user_id` ASC, `model_id` ASC) USING BTREE COMMENT '用户-模型唯一索引'
-) ENGINE = InnoDB AUTO_INCREMENT = 103085163169793 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI 公开模型使用记录表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 104860544949249 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'AI 公开模型使用记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ai_model_usage_record
@@ -451,10 +451,10 @@ INSERT INTO `ai_platform` VALUES (5, 'HunYuan', '混元', 'Tencent (混元)', 'h
 INSERT INTO `ai_platform` VALUES (6, 'ZhiPu', '智谱', 'Zhipu (智谱)', 'glm-4, glm-3-turbo, glm-4v', 'https://open.bigmodel.cn/dev/api', '请前往智谱 AI 官网查看可用模型列表', 6, 0, '', '2025-11-11 01:19:48', '', '2025-11-11 02:33:25', b'0', 1);
 INSERT INTO `ai_platform` VALUES (7, 'XingHuo', '星火', 'XingHuo (星火)', 'generalv3.5, generalv3, generalv2.1', 'https://www.xfyun.cn/doc/spark/Web.html', '请前往讯飞星火官网查看可用模型列表', 7, 0, '', '2025-11-11 01:19:48', '', '2025-11-11 02:33:25', b'0', 1);
 INSERT INTO `ai_platform` VALUES (8, 'DouBao', '豆包', 'DouBao (豆包)', 'doubao-lite-4k, doubao-lite-32k, doubao-pro-4k', 'https://www.volcengine.com/docs/82379', '请前往字节豆包官网查看可用模型列表', 8, 0, '', '2025-11-11 01:19:48', '', '2025-11-11 02:33:25', b'0', 1);
-INSERT INTO `ai_platform` VALUES (9, 'SiliconFlow', '硅基流动', 'SiliconFlow (硅基流动)', 'Qwen/Qwen2-7B-Instruct, meta-llama/Llama-2-7b-chat-hf, Wan-AI/Wan2.2-T2V-A14B, THUDM/GLM-Z1-9B-0414, Kwai-Kolors/Kolors, deepseek-ai/DeepSeek-R1-0528-Qwen3-8B, DeepSeek-R1-0528-Qwen3-8B, tencent/Hunyuan-MT-7B, deepseek-ai/DeepSeek-R1-Distill-Qwen-7B, DeepSeek-R1-Distill-Qwen-7B, deepseek-ai/DeepSeek-V3.2-Exp', 'https://docs.siliconflow.cn/cn/userguide/capabilities/text-generation', '请前往硅基流动官网查看可用模型列表', 2, 0, '', '2025-11-11 01:19:48', '', '2025-11-12 11:15:26', b'0', 1);
+INSERT INTO `ai_platform` VALUES (9, 'SiliconFlow', '硅基流动', 'SiliconFlow (硅基流动)', 'Qwen/Qwen2-7B-Instruct, meta-llama/Llama-2-7b-chat-hf, Wan-AI/Wan2.2-T2V-A14B, THUDM/GLM-Z1-9B-0414, Kwai-Kolors/Kolors, deepseek-ai/DeepSeek-R1-0528-Qwen3-8B, DeepSeek-R1-0528-Qwen3-8B, tencent/Hunyuan-MT-7B, deepseek-ai/DeepSeek-R1-Distill-Qwen-7B, DeepSeek-R1-Distill-Qwen-7B, deepseek-ai/DeepSeek-V3.2-Exp, deepseek-ai/DeepSeek-V3.1-Terminus, Qwen/Qwen3-Omni-30B-A3B-Thinking', 'https://docs.siliconflow.cn/cn/userguide/capabilities/text-generation', '请前往硅基流动官网查看可用模型列表', 2, 0, '', '2025-11-11 01:19:48', '', '2025-11-12 11:15:26', b'0', 1);
 INSERT INTO `ai_platform` VALUES (10, 'MiniMax', 'MiniMax', 'MiniMax', 'abab6.5-chat, abab5.5-chat, abab5-chat', 'https://www.minimaxi.com/document/guides/chat', '请前往 MiniMax 官网查看可用模型列表', 10, 0, '', '2025-11-11 01:19:48', '', '2025-11-11 02:33:25', b'0', 1);
 INSERT INTO `ai_platform` VALUES (11, 'BaiChuan', '百川智能', 'BaiChuan (百川)', 'Baichuan2-Turbo, Baichuan2-Turbo-192k, Baichuan2-53B', 'https://platform.baichuan-ai.com/docs/api', '请前往百川智能官网查看可用模型列表', 11, 0, '', '2025-11-11 01:19:48', '', '2025-11-11 02:33:25', b'0', 1);
-INSERT INTO `ai_platform` VALUES (12, 'GiteeAI', 'Gitee AI', 'Gitee AI (魔力方舟)', 'tts-1, tts-1-hd, gpt-4o, gpt-4o-mini', 'https://ai.gitee.com/docs', '请前往 Gitee AI 魔力方舟官网查看可用模型列表', 2, 0, '', '2025-11-11 01:19:48', '', '2025-11-12 11:15:29', b'0', 1);
+INSERT INTO `ai_platform` VALUES (12, 'GiteeAI', 'Gitee AI', 'Gitee AI (魔力方舟)', 'tts-1, tts-1-hd, gpt-4o, gpt-4o-mini, Kimi-K2-Thinking', 'https://ai.gitee.com/docs', '请前往 Gitee AI 魔力方舟官网查看可用模型列表', 2, 0, '', '2025-11-11 01:19:48', '', '2025-11-12 11:15:29', b'0', 1);
 INSERT INTO `ai_platform` VALUES (13, 'OpenAI', 'OpenAI', 'OpenAI', 'gpt-4, gpt-4-turbo, gpt-3.5-turbo, gpt-4o', 'https://platform.openai.com/docs/models', '请前往 OpenAI 官网查看可用模型列表', 13, 0, '', '2025-11-11 01:19:48', '', '2025-11-11 02:33:25', b'0', 1);
 INSERT INTO `ai_platform` VALUES (14, 'AzureOpenAI', 'Azure OpenAI', 'Azure OpenAI', 'gpt-4, gpt-35-turbo, gpt-4-turbo', 'https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models', '请前往 Azure OpenAI 官网查看可用模型列表', 14, 0, '', '2025-11-11 01:19:48', '', '2025-11-11 02:33:25', b'0', 1);
 INSERT INTO `ai_platform` VALUES (15, 'Anthropic', 'Anthropic', 'Anthropic', 'claude-3-opus, claude-3-sonnet, claude-3-haiku', 'https://docs.anthropic.com/claude/docs/models-overview', '请前往 Anthropic 官网查看可用模型列表', 15, 0, '', '2025-11-11 01:19:48', '', '2025-11-11 02:33:25', b'0', 1);
@@ -2295,8 +2295,8 @@ CREATE TABLE `def_user`  (
 -- ----------------------------
 -- Records of def_user
 -- ----------------------------
-INSERT INTO `def_user` VALUES (61170828519936, 2, '15147891644', 'HuLa小管家', '', '022', NULL, NULL, '', NULL, b'0', '', '', '1', b'1', '', '2025-08-11 11:11:03.139', '{\"createIp\": \"206.237.119.215\", \"updateIp\": \"120.231.232.41\", \"createIpDetail\": null, \"updateIpDetail\": null}', '2025-12-01 20:30:50', 6, NULL, 'a4d5c225e6709ba025272a31c7e90e0121d5e5ba16695afe0b61370bedb677d0', 'Dawn', '2025-07-07 15:27:02', 1, '2025-03-27 04:23:08', NULL, '2025-07-16 12:26:15', 0, 1);
-INSERT INTO `def_user` VALUES (61170828519937, 2, '13275346112', 'Dawn', '2439646234@qq.com', 'https://cdn.hulaspark.com/avatar/2439646234/6ec99d37b8ba1296c325d2d36b46a14d.webp', NULL, NULL, '', NULL, b'0', '', '', '1', b'1', '', '2025-08-11 11:11:03.189', '{\"createIp\": \"206.237.119.215\", \"updateIp\": \"116.24.64.57\", \"createIpDetail\": null, \"updateIpDetail\": {\"ip\": \"116.24.64.57\", \"isp\": \"电信\", \"area\": \"\", \"city\": \"深圳\", \"isp_id\": \"\", \"region\": \"广东省\", \"city_id\": \"\", \"country\": \"中国\", \"region_id\": \"\", \"country_id\": \"\"}}', NULL, 0, NULL, 'a4d5c225e6709ba025272a31c7e90e0121d5e5ba16695afe0b61370bedb677d0', 'Dawn', '2025-12-05 00:04:51', 1, '2025-03-27 04:23:08', NULL, '2025-12-05 01:04:45', 0, 1);
+INSERT INTO `def_user` VALUES (61170828519936, 2, '15147891644', 'HuLa小管家', '', '022', NULL, NULL, '', NULL, b'0', '', '', '1', b'1', '', '2025-08-11 11:11:03.139', '{\"createIp\": \"\", \"updateIp\": \"\", \"createIpDetail\": null, \"updateIpDetail\": null}', '2025-12-01 20:30:50', 6, NULL, 'a4d5c225e6709ba025272a31c7e90e0121d5e5ba16695afe0b61370bedb677d0', 'Dawn', '2025-07-07 15:27:02', 1, '2025-03-27 04:23:08', NULL, '2025-07-16 12:26:15', 0, 1);
+INSERT INTO `def_user` VALUES (61170828519937, 2, '13275346112', 'Dawn', '2439646234@qq.com', 'https://cdn.hulaspark.com/avatar/2439646234/6ec99d37b8ba1296c325d2d36b46a14d.webp', NULL, NULL, '', NULL, b'0', '', '', '1', b'1', '', '2025-08-11 11:11:03.189', '{\"createIp\": \"206.237.119.215\", \"updateIp\": \"120.231.232.9\", \"createIpDetail\": null, \"updateIpDetail\": {\"ip\": \"120.231.232.9\", \"isp\": \"移动\", \"area\": \"\", \"city\": \"深圳\", \"isp_id\": \"\", \"region\": \"广东省\", \"city_id\": \"\", \"country\": \"中国\", \"region_id\": \"\", \"country_id\": \"\"}}', NULL, 0, NULL, 'a4d5c225e6709ba025272a31c7e90e0121d5e5ba16695afe0b61370bedb677d0', 'Dawn', '2025-12-10 21:24:19', 1, '2025-03-27 04:23:08', 61170828529941, '2025-12-10 21:30:16', 0, 1);
 INSERT INTO `def_user` VALUES (61170828529941, 1, '24396462341', 'Dawn', '24396462341@qq.com', 'https://cdn.hulaspark.com/avatar/2439646234/6ec99d37b8ba1296c325d2d36b46a14d.webp', NULL, NULL, '', NULL, b'0', '', '', '1', b'1', '', '2025-08-11 11:11:03.189', '{\"createIp\": \"206.237.119.215\", \"updateIp\": \"116.24.64.57\", \"createIpDetail\": null, \"updateIpDetail\": {\"ip\": \"116.24.64.57\", \"isp\": \"电信\", \"area\": \"\", \"city\": \"深圳\", \"isp_id\": \"\", \"region\": \"广东省\", \"city_id\": \"\", \"country\": \"中国\", \"region_id\": \"\", \"country_id\": \"\"}}', NULL, 0, NULL, 'a4d5c225e6709ba025272a31c7e90e0121d5e5ba16695afe0b61370bedb677d0', 'Dawn', '2025-12-04 16:17:54', 1, '2025-03-27 04:23:08', NULL, '2025-12-04 17:19:56', 0, 1);
 
 -- ----------------------------
@@ -2373,7 +2373,7 @@ CREATE TABLE `extend_interface_log`  (
 -- Records of extend_interface_log
 -- ----------------------------
 INSERT INTO `extend_interface_log` VALUES (66567882983426, 244439130119864323, '阿里短信', 0, 1, '2025-08-26 16:37:01', '2025-08-26 16:37:00', NULL, '2025-08-26 16:37:00', NULL, 0, 0);
-INSERT INTO `extend_interface_log` VALUES (655249535051914248, 244881451621810192, '腾讯邮件', 1667, 65, '2025-12-05 13:14:22', '2025-07-16 18:41:01', NULL, '2025-07-16 18:41:01', NULL, 0, 0);
+INSERT INTO `extend_interface_log` VALUES (655249535051914248, 244881451621810192, '腾讯邮件', 1783, 67, '2025-12-11 08:29:55', '2025-07-16 18:41:01', NULL, '2025-07-16 18:41:01', NULL, 0, 0);
 
 -- ----------------------------
 -- Table structure for extend_interface_logging
@@ -2587,7 +2587,7 @@ CREATE TABLE `worker_node`  (
   `created` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   `is_del` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1061 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'DB;WorkerID Assigner for UID Generator' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1083 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'DB;WorkerID Assigner for UID Generator' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of worker_node

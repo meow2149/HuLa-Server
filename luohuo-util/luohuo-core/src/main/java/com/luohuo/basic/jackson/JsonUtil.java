@@ -53,10 +53,19 @@ public final class JsonUtil {
         if (StrUtil.isEmpty(content)) {
             return null;
         }
+        String s = content.trim();
+        boolean jsonLike = StrUtil.startWith(s, "{") || StrUtil.startWith(s, "[");
         try {
+            if (jsonLike) {
+                return getInstance().readValue(s, valueType);
+            }
             return getInstance().convertValue(content, valueType);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            try {
+                return getInstance().readValue(s, valueType);
+            } catch (Exception e2) {
+                log.error(e2.getMessage(), e2);
+            }
         }
         return null;
     }
@@ -65,23 +74,81 @@ public final class JsonUtil {
         if (StrUtil.isEmpty(content)) {
             return null;
         }
-		return getInstance().convertValue(content, typeReference);
-	}
+        String s = content.trim();
+        boolean jsonLike = StrUtil.startWith(s, "{") || StrUtil.startWith(s, "[");
+        try {
+            if (jsonLike) {
+                return getInstance().readValue(s, typeReference);
+            }
+            return getInstance().convertValue(content, typeReference);
+        } catch (Exception e) {
+            try {
+                return getInstance().readValue(s, typeReference);
+            } catch (Exception e2) {
+                log.error(e2.getMessage(), e2);
+            }
+        }
+        return null;
+    }
+
+    public static <T> T parseJson(String content, Class<T> valueType) {
+        if (StrUtil.isEmpty(content)) {
+            return null;
+        }
+        try {
+            return getInstance().readValue(content, valueType);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public static <T> T parseJson(String content, TypeReference<T> typeReference) {
+        if (StrUtil.isEmpty(content)) {
+            return null;
+        }
+        try {
+            return getInstance().readValue(content, typeReference);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
 
     public static <T> T parse(byte[] bytes, Class<T> valueType) {
-		return getInstance().convertValue(bytes, valueType);
+        try {
+            return getInstance().readValue(bytes, valueType);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
     }
 
     public static <T> T parse(byte[] bytes, TypeReference<T> typeReference) {
-		return getInstance().convertValue(bytes, typeReference);
+        try {
+            return getInstance().readValue(bytes, typeReference);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
     }
 
     public static <T> T parse(InputStream in, Class<T> valueType) {
-		return getInstance().convertValue(in, valueType);
+        try {
+            return getInstance().readValue(in, valueType);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
     }
 
     public static <T> T parse(InputStream in, TypeReference<T> typeReference) {
-		return getInstance().convertValue(in, typeReference);
+        try {
+            return getInstance().readValue(in, typeReference);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
     }
 
 	/**
@@ -106,16 +173,24 @@ public final class JsonUtil {
 	}
 
     public static Map<String, Object> toMap(String content) {
-		return getInstance().convertValue(content, Map.class);
+        try {
+            return getInstance().readValue(content, Map.class);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return Collections.emptyMap();
     }
 
     public static <T> Map<String, T> toMap(String content, Class<T> valueTypeRef) {
-		Map<String, Map<String, Object>> map = getInstance().convertValue(content, new TypeReference<>() {
-		});
-		Map<String, T> result = new HashMap<>(CollHelper.initialCapacity(map.size()));
-		map.forEach((key, value) -> result.put(key, toPojo(value, valueTypeRef)));
-
-		return result;
+        try {
+            Map<String, Map<String, Object>> map = getInstance().readValue(content, new TypeReference<>() {});
+            Map<String, T> result = new HashMap<>(CollHelper.initialCapacity(map.size()));
+            map.forEach((key, value) -> result.put(key, toPojo(value, valueTypeRef)));
+            return result;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return Collections.emptyMap();
     }
 
     public static <T> T toPojo(Map fromValue, Class<T> toValueType) {

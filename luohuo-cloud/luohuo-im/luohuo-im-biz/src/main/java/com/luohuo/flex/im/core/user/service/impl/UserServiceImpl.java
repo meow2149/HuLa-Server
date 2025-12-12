@@ -51,6 +51,7 @@ import com.luohuo.flex.model.vo.query.BindEmailReq;
 import com.luohuo.flex.im.domain.vo.resp.user.BadgeResp;
 import com.luohuo.flex.im.domain.vo.resp.user.UserInfoResp;
 import com.luohuo.flex.im.core.user.service.UserService;
+import com.luohuo.flex.im.core.user.service.FeedService;
 import com.luohuo.flex.im.core.user.service.adapter.UserAdapter;
 import com.luohuo.flex.im.core.user.service.cache.UserSummaryCache;
 
@@ -81,6 +82,7 @@ public class UserServiceImpl implements UserService {
 	private final UserCache userCache;
     private final UserSummaryCache userSummaryCache;
     private final SensitiveWordBs sensitiveWordBs;
+    private final FeedService feedService;
 
 	@Override
 	public Boolean refreshIpInfo(Long uid, IpInfo ipInfo) {
@@ -120,7 +122,9 @@ public class UserServiceImpl implements UserService {
     public UserInfoResp getUserInfo(Long uid) {
 		SummeryInfoDTO userInfo = userSummaryCache.get(uid);
         Integer countByValidItemId = userBackpackDao.getCountByValidItemId(uid, ItemEnum.MODIFY_NAME_CARD.getId());
-        return UserAdapter.buildUserInfoResp(userInfo, countByValidItemId);
+        UserInfoResp resp = UserAdapter.buildUserInfoResp(userInfo, countByValidItemId);
+        resp.setLatestFeed(feedService.getLatestByUser(uid, uid));
+        return resp;
     }
 
 	@Override
