@@ -1,56 +1,66 @@
-## luohuo-cache-starter
+# luohuo-cache-starter
 
-将分布式缓存redis 和 内存 caffeine 的一些基本方法抽象出来，达到只有切换的目的。业务系统使用时，注入 CacheOps 类即可。
-但这样做又有几个缺陷： redis 的一些特殊方法将无法使用(如：
-list、set、hash)。
+将 **分布式缓存 Redis** 与 **本地缓存 Caffeine** 的常用能力做统一抽象，业务侧通常只需注入 `CacheOps` 即可在两种缓存实现间切换。
 
-### 要用Redis的特有方法怎么办？
+> [!NOTE]
+> 抽象后会有能力边界：Redis 的一些特有结构与操作（例如 `list` / `set` / `hash`）无法完全用统一接口覆盖。
 
-配置文件配置luohuo.cache.type=redis后，注入 CachePlusOps 或者 RedisOps，程序直接使用RedisOps必须保证系统每次启动都依赖redis，
-CachePlusOps则将caffeine不支持等缓存类型进行了空实现，能保证系统无redis环境也能正常启动。
+## 要用 Redis 特有方法怎么办
 
-### 为啥要抽象？
+当配置 `luohuo.cache.type=REDIS` 后，你可以按需注入：
 
-- 1, 项目比较小（基本都是CRUD功能），而且团队中会优雅使用redis的比较少，而且会频繁的复制代码到N个项目，每个项目随时都可能会重新部署或者迁移一套环境用于演示，
-  这里就是想让一些部署去演示的项目，直接用内存缓存即可，少部署一个redis。
-- 2, 开发电脑配置比较低，启动太多中间件会很卡，对于专心编码的用户来说，少启动一个中间件，对开发的体验比较好
+- **`RedisOps`**：直接使用 Redis 能力（要求环境必须依赖 Redis，否则启动可能失败）
+- **`CachePlusOps`**：对 Caffeine 不支持的能力做空实现，保证在无 Redis 环境下也能启动
 
-### 如何切换缓存使用redis 还是caffeine？
+## 为啥要抽象
 
-1, redis
+- **降低演示/小项目部署成本**：部分项目只需要缓存能力，不希望额外部署 Redis
+- **提升开发体验**：开发机资源有限时，少启动一个中间件更流畅
 
-```
-pom.xml
+## 如何切换缓存实现（Redis / Caffeine）
+
+### 1. 使用 Redis
+
+`pom.xml`：
+
+```xml
 <dependency>
-    <groupId>com.luohuo.basic</groupId>
-    <artifactId>luohuo-cache-starter</artifactId>
+  <groupId>com.luohuo.basic</groupId>
+  <artifactId>luohuo-cache-starter</artifactId>
 </dependency>
+```
 
-application.yml
+`application.yml`：
+
+```yaml
 luohuo:
   redis:
-    ip:127.0.0.1
+    ip: 127.0.0.1
     port: 16379
   cache:
     type: REDIS
 ```
 
-2, caffeine
+### 2. 使用 Caffeine
 
-```
-pom.xml
+`pom.xml`（排除 Redis 依赖）：
+
+```xml
 <dependency>
-    <groupId>com.luohuo.basic</groupId>
-    <artifactId>luohuo-cache-starter</artifactId>
-    <exclusions>
-        <exclusion>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </exclusion>
-    </exclusions>
+  <groupId>com.luohuo.basic</groupId>
+  <artifactId>luohuo-cache-starter</artifactId>
+  <exclusions>
+    <exclusion>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </exclusion>
+  </exclusions>
 </dependency>
+```
 
-application.yml
+`application.yml`：
+
+```yaml
 luohuo:
   cache:
     type: CAFFEINE

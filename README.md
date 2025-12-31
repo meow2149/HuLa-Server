@@ -55,6 +55,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 - **RocketMQ**: 高性能消息中间件，各项服务之间解耦的关键，im场景下实现事务消息保障、顺序消费
 
 ### AI能力
+
 - **Spring AI**: 统一的AI接口抽象层，支持多平台切换
 - **Gitee AI**: 魔力方舟AI平台，支持对话、图片、音频、视频生成
 - **硅基流动**: 国产AI平台，提供多模态AI能力
@@ -77,6 +78,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 #### 📊 支持的AI平台
 
 **🇨🇳 国内平台**
+
 - **Gitee AI (魔力方舟)** - 支持对话、图片生成、音频生成、视频生成
 - **硅基流动 (SiliconFlow)** - 支持对话、图片生成、音频生成、视频生成
 - **Kimi (月之暗面)** - 支持对话
@@ -91,6 +93,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 - **百川智能** - 支持对话
 
 **🌍 国外平台**
+
 - **OpenAI** - 支持对话、图片生成
 - **OpenRouter** - 支持对话
 - **Ollama** - 支持对话
@@ -101,6 +104,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 #### 🎯 核心功能
 
 **💬 智能对话**
+
 - 多平台对话模型统一接口
 - 支持流式响应和普通响应
 - 工具调用能力 (Function Calling)
@@ -108,12 +112,14 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 - 上下文记忆
 
 **🎨 文生图 (Text-to-Image)**
+
 - 支持多种图片生成模型
 - 自定义图片尺寸、风格
 - 异步任务处理
 - 图片存储管理
 
 **🎵 文生音 (Text-to-Speech)**
+
 - 多音色选择
 - 语速调节
 - 多种音频格式输出 (MP3、WAV等)
@@ -121,6 +127,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 - 音频文件存储
 
 **🎬 文生视频 (Text-to-Video)**
+
 - 文本描述生成视频
 - 异步任务提交
 - 视频生成状态轮询
@@ -128,6 +135,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 - 支持 OpenRouter、Kimi、GiteeAI、硅基流动等平台
 
 **🎼 AI音乐生成**
+
 - Suno AI 音乐创作
 - 描述模式和歌词模式
 - 自定义音乐风格
@@ -145,7 +153,9 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 ## 🏗️系统架构
 
 ### 🚪 luohuo-gateway - 网关服务
+
 🔐 API网关 | 🛡️ 安全防护 | 🔄 服务路由
+
 - **路由转发：** 智能路由到后端微服务
 - **统一鉴权：** JWT令牌验证与权限检查
 - **服务发现：** 集成nacos实现动态服务发现
@@ -154,13 +164,16 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 - **日志记录：** 请求日志、审计日志
 
 ### 🏗️ luohuo-base - 基础服务
+
 🏢 租户管理 | 👥 组织架构 | 🔧 资源中心
+
 - **多租户架构：** 支持多租户数据隔离
 - **组织管理：** 部门、岗位、职级管理
 - **角色权限：** RBAC权限模型，细粒度控制
 - **应用模块：** 统一应用管理平台
 
 ### 🔐 luohuo-oauth - 认证服务
+
 - **多方式登录：** 账号密码、手机验证码、邮箱、扫码登录
 - **动态二维码：** 实时生成扫码登录二维码
 - **令牌颁发：** Token、RefreshToken生成
@@ -168,19 +181,25 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 - **权限控制：** 基于角色的细粒度权限管理
 
 ### 💬 luohuo-im - IM业务服务
+
 👥 即时通讯 | 🏘️ 群组管理 | 💾 消息存储
+
 - **消息管理：** 单聊/群聊消息存储与转发
 - **群组管理：** 创建群组、成员管理、权限控制
 - **好友关系：** 好友添加、删除、黑名单管理
 - **会话管理：** 会话列表、置顶、消息状态
 
 ### 📡 luohuo-presence - 在线状态服务
+
 🟢 状态追踪 | 📊 实时统计 | 🔔 状态推送
+
 - **用户状态：** 实时追踪在线/离线状态
 - **群组统计：** 群成员在线情况统计
 
 ### 📶 luohuo-ws - websocket服务
+
 🔗 长连接管理 | 🚀 实时推送 | 📞 音视频通话
+
 - **连接管理：** 建立与维护会话的指纹级映射，宕机自动重连机制
 - **WebFlux异步架构：** 基础netty，提升并发性能
 - **消息路由：** 智能消息路由到目标客户端, 配合指纹机映射解决消息风暴
@@ -189,6 +208,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 ### ⚙️ luohuo-system - 后台服务
 
 🖥️ 系统管理 | 📈 数据统计 | 🔍 监控审计
+
 - **系统配置：** IM系统参数配置管理
 - **用户管理：** 用户信息维护、封禁解封
 - **数据统计：** 用户活跃度、消息量统计
@@ -196,7 +216,9 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 - **内容审计：** 消息内容安全审计过滤
 
 ### 🤖 luohuo-ai - AI服务
+
 🎨 多模态AI | 🧠 智能对话 | 🎬 内容生成
+
 - **智能对话：** 集成20+主流AI平台，支持流式对话、工具调用
 - **文生图：** 支持 Midjourney、Stable Diffusion、通义万相等多平台图片生成
 - **文生音：** TTS语音合成，支持多音色、多语速、多格式
@@ -216,11 +238,12 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 8. **目标WS节点消费分发过来的主题消息**
 9. **查找本地会话映射表**
 10. **推送消息到具体客户端**
-11. **客户端返回ACK确认** 
-12. **更新消息状态为已送达** 
+11. **客户端返回ACK确认**
+12. **更新消息状态为已送达**
 ![messageFlow.png](preview/messageFlow.png)
 
 ## 🌐 性能对比 （WS 服务）
+
 | 指标 | 广播模式 |       精准路由模式       | 提升倍数 |               性能指标 |                        说明 |
 |:--- |:---:|:------------------:|---:|-------------------:|--------------------------:|
 | **网络消息数** | O(N) |        O(k)        | 10-100倍 |                  - |                           |
@@ -229,6 +252,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 | **延迟时间** | 不稳定 |       稳定低延迟        | 2-5倍 |            平均<50ms |                           |
 
 ## 🚀 系统扩展性 - 线性扩展能力
+
 - **用户增长：** 增加用户不会增加单个消息的复杂度
 - **节点扩展：** 增加节点不会增加单消息的推送成本
 - **流量增长：** 系统吞吐量随节点数线性增长
@@ -286,6 +310,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 **本免责声明的最终解释权归开发者所有**
 
 ## 赞助HuLa
+
 如果您觉得HuLa对您有帮助，欢迎赞助HuLa，您的支持是我们不断前进的动力
 
 <div style="display: flex;">
@@ -293,7 +318,6 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 
 <img src="preview/zfb.png" width="260" height="280" alt="赞助码" style="border-radius: 12px; margin-left: 40px" />
 </div>
-
 
 ## 💬 加入社区
 
@@ -315,11 +339,13 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 </div>
 
 ### 💎 钻石赞助者 (￥1000+)
+
 | 💝 日期 | 👤 赞助者 | 💰 金额 | 🏷️ 平台 |
 |---------|----------|--------|---------|
 | 2025-09-12 | **翟可** | `¥1688` | ![微信转账](https://img.shields.io/badge/微信赞赏-07C160?style=flat&logo=wechat&logoColor=white) |
 
 ### 🏆 金牌赞助者 (￥100+)
+
 | 💝 日期 | 👤 赞助者 | 💰 金额 | 🏷️ 平台 |
 |---------|----------|--------|---------|
 | 2025-09-03 | **烛火** | `¥500` | ![微信转账](https://img.shields.io/badge/微信赞赏-07C160?style=flat&logo=wechat&logoColor=white) |
@@ -334,6 +360,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 | 2025-02-8 | **Boom....** | `¥100` | ![微信赞赏](https://img.shields.io/badge/微信赞赏-07C160?style=flat&logo=wechat&logoColor=white) |
 
 ### 🥈 银牌赞助者 (￥50-99)
+
 | 💝 日期 | 👤 赞助者 | 💰 金额 | 🏷️ 平台 |
 |---------|----------|--------|---------|
 | 2025-06-26 | **m udDy🐖** | `¥88` | ![微信赞赏](https://img.shields.io/badge/微信赞赏-07C160?style=flat&logo=wechat&logoColor=white) |
@@ -345,6 +372,7 @@ HuLa-Server 是一款基于 SpringCloud、SpringBoot3、Netty、MyBatis-Plus 和
 | 2025-05-15 | **孤鸿影** | `¥56` | ![微信赞赏](https://img.shields.io/badge/微信赞赏-07C160?style=flat&logo=wechat&logoColor=white) |
 
 ### 🥉 铜牌赞助者 (￥20-49)
+
 | 💝 日期 | 👤 赞助者 | 💰 金额 | 🏷️ 平台 |
 |---------|----------|--------|---------|
 | 2025-08-12 | ***持** | `¥20` | ![支付宝赞赏](https://img.shields.io/badge/支付宝赞赏-1677FF?style=flat&logo=alipay&logoColor=white) |

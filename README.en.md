@@ -5,8 +5,7 @@
 <p align="center">An instant messaging system server built with SpringBoot3, Netty, MyBatis-Plus and RocketMQ</p>
 
 <div align="center">
-  <img src="https://img.shields.io/badge/spring-boot3-brightgreen?logo=springboot
-">
+  <img src="https://img.shields.io/badge/spring-boot3-brightgreen?logo=springboot">
   <img src="https://img.shields.io/badge/Netty-343434?logo=netty&logoColor=white">
   <img src="https://img.shields.io/badge/MyBatis--Plus-00A1E9?logo=mybatis&logoColor=white">
   <img src="https://img.shields.io/badge/RocketMQ-D77310?logo=apacherocketmq&logoColor=white">
@@ -94,7 +93,7 @@ HuLa-Server is an instant messaging system server built with SpringBoot3, Netty,
 
 Under continuous development...
 
-## Thanks to all contributors!
+## Thanks to all contributors
 
 <a href="https://github.com/HuLaSpark/HuLa-Server/graphs/contributors">
   <img src="https://opencollective.com/HuLaSpark/contributors.svg?width=890" />
@@ -111,6 +110,7 @@ Under continuous development...
 **The final interpretation right of this disclaimer belongs to the developer**
 
 ## Sponsor HuLa
+
 If you find HuLa helpful, welcome to sponsor HuLa. Your support is our motivation to keep moving forward
 
 <div style="display: flex;">
@@ -120,12 +120,15 @@ If you find HuLa helpful, welcome to sponsor HuLa. Your support is our motivatio
 </div>
 
 ## HuLa Community Discussion Group
+
 <img src="preview/wx.png" width="260" height="300" alt="微信群二维码" style="border-radius: 12px;" />
 
 ## Sponsor List
+
 Thanks to the following sponsors for their support!
 
 ### 🔐 User Authentication System
+
 | Feature | Description | Status |
 |---------|-------------|--------|
 | 🔑 | Username/Password Login | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
@@ -133,6 +136,7 @@ Thanks to the following sponsors for their support!
 | 💻 | Multi-device Login Management | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
 
 ### 💬 Message Communication
+
 | Feature | Description | Status |
 |---------|-------------|--------|
 | 👤 | One-on-one Private Chat | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
@@ -147,6 +151,7 @@ Thanks to the following sponsors for their support!
 | 📔 | Chat History Management | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
 
 ### 🤝 Social Management
+
 | Feature | Description | Status |
 |---------|-------------|--------|
 | ➕ | Add & Remove Friends | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
@@ -161,6 +166,7 @@ Thanks to the following sponsors for their support!
 | 📍 | Get and Send Location | ![In Progress](https://img.shields.io/badge/🐣-进行中-ee9f20?style=flat&labelColor=fef7e6&color=ee9f20) |
 
 ### 🎨 User Experience
+
 | Feature | Description | Status |
 |---------|-------------|--------|
 | 🖼️ | Modern UI Design | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
@@ -168,6 +174,7 @@ Thanks to the following sponsors for their support!
 | 🎭 | Skin Theme Switching | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
 
 ### 🛠️ System Features
+
 | Feature | Description | Status |
 |---------|-------------|--------|
 | 🪟 | Multi-window Management | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
@@ -178,20 +185,23 @@ Thanks to the following sponsors for their support!
 | 🔄 | Auto-update System | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
 
 ### 🌐 Cross-platform Support
+
 | Feature | Description | Status |
 |---------|-------------|--------|
 | 💻 | Windows/macOS/Linux | ![Completed](https://img.shields.io/badge/✅-Completed-008080?style=flat&labelColor=e6f7f7&color=008080) |
 | 📱 | iOS/Android Adaptation | ![In Progress](https://img.shields.io/badge/🐣-In_Progress-ee9f20?style=flat&labelColor=fef7e6&color=ee9f20) |
 
 ### 🤖 AI Integration
+
 | Feature | Description | Status |
 |---------|-------------|--------|
 | 🧠 | AI Chat Assistant | ![In Progress](https://img.shields.io/badge/🐣-In_Progress-ee9f20?style=flat&labelColor=fef7e6&color=ee9f20) |
 | 🔌 | Multi-platform AI Support | ![In Progress](https://img.shields.io/badge/🐣-In_Progress-ee9f20?style=flat&labelColor=fef7e6&color=ee9f20) |
 
-## 👏 Thanks to all Contributors!
+## 👏 Thanks to all Contributors
 
 > Note: This list is manually updated. If you have sponsored but are not shown in the list, please contact us through:
+
  1. Submit an Issue on GitHub
- 2. Send an email to: 2439646234@qq.com
+ 2. Send an email to: <2439646234@qq.com>
  3. Contact via WeChat: cy2439646234

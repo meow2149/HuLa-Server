@@ -1,23 +1,24 @@
-## 设计思想
+# 设计思想：API 外观 + 单体/微服务双实现
 
-本项目励志打造为一套代码同时兼容单体版本和微服务版本的项目，
-本项目的单体版和微服务版业务功能完全一致，只是实现方式不同，前者使用SpringBoot构建，否则使用SpringCloud构建。
-为了使中小型企业在使用本框架时，能自由切换单体版或微服务，这面临一些挑战。
+## 背景
 
-微服务项目涉及到”跨服务“的接口调用，而在单体版中却没有”跨服务“概念，那么，如何实现同一段代码在微服务版本中，能使用openfeign进行跨服务的调用，
-单体版中则采取本地接口的方式进行调用呢？
+本项目**立志**打造为一套代码同时兼容“单体版”和“微服务版”的项目：两者业务功能一致，但实现方式不同——前者使用 Spring Boot 构建，后者使用 Spring Cloud 构建。
 
-我们只需要在 luohuo-xxx-api 模块中定义外观类，在luohuo-xxx-boot-impl模块中采用单体版的方式来实现 luohuo-xxx-api 中的接口，
-在 luohuo-xxx-cloud-impl模块中采用微服务的方式来实现 luohuo-xxx-api 中的接口，
-并且在luohuo-boot-server/pom.xml 中只引入luohuo-xxx-boot-impl的依赖（不能引入luohuo-xxx-cloud-impl）即可，
-在luohuo-base-server/pom.xml 中只引入luohuo-xxx-cloud-impl的依赖（不能引入luohuo-xxx-boot-impl）即可。
+## 核心问题
 
-- luohuo-xxx-api
-  接口层
-- luohuo-xxx-boot-impl
-  单体版本的具体实现
-- luohuo-xxx-cloud-impl
-  微服务版本的具体实现
+微服务模式下存在“跨服务”的接口调用，而单体模式下没有“跨服务”概念：如何让**同一段业务代码**在微服务版走 OpenFeign 跨服务调用，在单体版走本地实现调用？
 
+## 解决方案：接口下沉 + 双实现
 
-luohuo-xxx-api 暴露xxx服务的接口，提供给其他服务调用 
+我们将服务能力抽象到 `luohuo-xxx-api`，并分别提供单体/微服务两套实现：
+
+- **`luohuo-xxx-api`**：接口层（对外暴露服务能力）
+- **`luohuo-xxx-boot-impl`**：单体版实现（本地接口方式）
+- **`luohuo-xxx-cloud-impl`**：微服务版实现（OpenFeign/跨服务调用方式）
+
+依赖约束（避免实现冲突）：
+
+- 单体版 server（例如 `luohuo-boot-server`）只引入 `luohuo-xxx-boot-impl`（不要引入 `luohuo-xxx-cloud-impl`）
+- 微服务版 server（各 `*-server` 模块）只引入 `luohuo-xxx-cloud-impl`（不要引入 `luohuo-xxx-boot-impl`）
+
+最终效果：业务侧只依赖 `luohuo-xxx-api` 面向接口编程，通过依赖组合选择运行形态，实现代码复用与形态切换。

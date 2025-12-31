@@ -1,22 +1,35 @@
-# 说明
+# luohuo-uid 说明
 
-本模块参考 uid-generator， 由于该项目没有发布正式版本，故将该项目源码复制过来方便使用。 若有侵权，联系作者删除
+本模块参考 [baidu/uid-generator](https://github.com/baidu/uid-generator)。由于原项目未发布正式版本，这里将源码复制进来方便使用；如有侵权请联系作者删除。
 
-改动的地方：
+## 与原项目的差异
 
-1. WorkerNodeDAO 从 com.baidu.fsg.uid.worker.dao.WorkerNodeDAO 移动到 com.luohuo.basic.uid.dao.WorkerNodeDAO
-2. DisposableWorkerIdAssigner 类的assignWorkerId方法，事务增加了：(rollbackFor = Exception.class)
+1. `WorkerNodeDAO` 从 `com.baidu.fsg.uid.worker.dao.WorkerNodeDAO` 移动到 `com.luohuo.basic.uid.dao.WorkerNodeDAO`
+2. `DisposableWorkerIdAssigner#assignWorkerId` 的事务增加了：`(rollbackFor = Exception.class)`
 
-参考地址： https://github.com/baidu/uid-generator
+## 参考资料
 
-原理参考： https://www.cnblogs.com/csonezp/p/12088432.html
+- 源码仓库：[baidu/uid-generator](https://github.com/baidu/uid-generator)
+- 原理文章：[uid-generator 原理解析](https://www.cnblogs.com/csonezp/p/12088432.html)
 
-# 关于UID比特分配的建议
+## 关于 UID 比特分配的建议
 
-对于并发数要求不高、期望长期使用的应用, 可增加timeBits位数, 减少seqBits位数. 例如节点采取用完即弃的WorkerIdAssigner策略,
-重启频率为12次/天, 那么配置成{"workerBits":23,"timeBits":31,"seqBits":9}时,
-可支持28个节点以整体并发量14400 UID/s的速度持续运行68年.
+### 场景 1：并发要求不高、期望长期使用
 
-对于节点重启频率频繁、期望长期使用的应用, 可增加workerBits和timeBits位数, 减少seqBits位数. 例如节点采取用完即弃的WorkerIdAssigner策略,
-重启频率为24*12次/天, 那么配置成{"workerBits":27,"timeBits":30,"seqBits":6}时,
-可支持37个节点以整体并发量2400 UID/s的速度持续运行34年.
+可增加 `timeBits` 位数，减少 `seqBits` 位数。示例：节点采取“用完即弃”的 `WorkerIdAssigner` 策略，重启频率为 `12 次/天`，配置：
+
+```json
+{"workerBits":23,"timeBits":31,"seqBits":9}
+```
+
+可支持 `28` 个节点以整体并发量 `14400 UID/s` 的速度持续运行约 `68` 年。
+
+### 场景 2：节点重启频繁、期望长期使用
+
+可增加 `workerBits` 与 `timeBits` 位数，减少 `seqBits` 位数。示例：重启频率为 `24*12 次/天`，配置：
+
+```json
+{"workerBits":27,"timeBits":30,"seqBits":6}
+```
+
+可支持 `37` 个节点以整体并发量 `2400 UID/s` 的速度持续运行约 `34` 年。
