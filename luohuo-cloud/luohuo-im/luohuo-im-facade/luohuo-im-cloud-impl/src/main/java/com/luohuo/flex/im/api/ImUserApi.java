@@ -49,6 +49,9 @@ public interface ImUserApi {
     @PostMapping("/user/register")
     R<Boolean> register(@Valid @RequestBody UserRegisterVo userRegisterVo);
 
+    @PostMapping("/user/bindOAuth")
+    R<Boolean> bindOAuth(@RequestBody UserRegisterVo userRegisterVo);
+
 	/**
 	 * 刷新IP信息、物理地址
 	 * @param refreshIpInfo ip信息

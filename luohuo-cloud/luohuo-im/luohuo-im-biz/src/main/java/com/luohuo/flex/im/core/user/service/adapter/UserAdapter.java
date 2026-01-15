@@ -41,6 +41,9 @@ public class UserAdapter {
         BeanUtil.copyProperties(userInfo, userInfoResp);
         userInfoResp.setUid(userInfo.getUid());
         userInfoResp.setModifyNameChance(countByValidItemId);
+        userInfoResp.setLinkedGitee(cn.hutool.core.util.StrUtil.isNotBlank(userInfo.getGiteeId()));
+        userInfoResp.setLinkedGithub(cn.hutool.core.util.StrUtil.isNotBlank(userInfo.getGithubId()));
+        userInfoResp.setLinkedGitcode(cn.hutool.core.util.StrUtil.isNotBlank(userInfo.getGitcodeId()));
         return userInfoResp;
     }
 

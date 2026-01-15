@@ -1,5 +1,6 @@
 package com.luohuo.flex.im.core.chat.service.adapter;
 
+import cn.hutool.core.util.StrUtil;
 import com.luohuo.flex.model.entity.ws.ChatMember;
 import com.luohuo.flex.model.enums.ChatActiveStatusEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,9 @@ public class MemberAdapter {
                     ChatMemberListResp resp = new ChatMemberListResp();
                     BeanUtils.copyProperties(a, resp);
                     resp.setUid(a.getId());
+                    resp.setLinkedGitee(StrUtil.isNotBlank(a.getGiteeId()));
+                    resp.setLinkedGithub(StrUtil.isNotBlank(a.getGithubId()));
+                    resp.setLinkedGitcode(StrUtil.isNotBlank(a.getGitcodeId()));
                     return resp;
                 }).collect(Collectors.toList());
     }

@@ -82,6 +82,23 @@ public class DefUser extends TenantEntity<Long> {
     private String idCard;
 
     /**
+     * Gitee OpenId
+     */
+    @TableField(value = "gitee_open_id", condition = LIKE)
+    private String giteeOpenId;
+
+    /**
+     * GitHub OpenId
+     */
+    @TableField(value = "github_open_id", condition = LIKE)
+    private String githubOpenId;
+    /**
+     * GitCode OpenId
+     */
+    @TableField(value = "gitcode_open_id", condition = LIKE)
+    private String gitcodeOpenId;
+
+    /**
      * 性别;
      */
     @TableField(value = "sex")
@@ -151,8 +168,9 @@ public class DefUser extends TenantEntity<Long> {
     @Builder
     public DefUser(Long id, Long createdBy, LocalDateTime createdTime, Long updatedBy, LocalDateTime updatedTime,
                    String username, String nickName, String email, String mobile, String idCard,
+                   String avatar,
                    Integer sex, Boolean state, String workDescribe,
-                   LocalDateTime passwordErrorLastTime, Integer passwordErrorNum, LocalDateTime passwordExpireTime, String password, String salt, LocalDateTime lastLoginTime) {
+                   LocalDateTime passwordErrorLastTime, Integer passwordErrorNum, LocalDateTime passwordExpireTime, String password, String salt, LocalDateTime lastLoginTime, Integer systemType, String giteeOpenId, String githubOpenId, String gitcodeOpenId) {
         this.id = id;
         this.createBy = createdBy;
         this.createTime = createdTime;
@@ -163,6 +181,7 @@ public class DefUser extends TenantEntity<Long> {
         this.email = email;
         this.mobile = mobile;
         this.idCard = idCard;
+        this.avatar = avatar;
         this.sex = sex;
         this.state = state;
         this.workDescribe = workDescribe;
@@ -172,5 +191,9 @@ public class DefUser extends TenantEntity<Long> {
         this.password = password;
         this.salt = salt;
         this.lastLoginTime = lastLoginTime;
+        this.systemType = systemType;
+        this.giteeOpenId = giteeOpenId;
+        this.githubOpenId = githubOpenId;
+        this.gitcodeOpenId = gitcodeOpenId;
     }
 }

@@ -54,4 +54,13 @@ public class UserInfoResp implements Serializable {
 
     @Schema(description = "调用次数[AI模块]")
     private Integer num;
+
+    @Schema(description = "是否绑定Gitee")
+    private Boolean linkedGitee;
+
+    @Schema(description = "是否绑定Github")
+    private Boolean linkedGithub;
+
+    @Schema(description = "是否绑定GitCode")
+    private Boolean linkedGitcode;
 }

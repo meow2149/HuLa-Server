@@ -380,6 +380,8 @@ public class UserServiceImpl implements UserService {
                 .sex(userRegisterVo.getSex())
                 .userType(userRegisterVo.getUserType())
                 .name(userName)
+                .giteeId(userRegisterVo.getGiteeId())
+                .githubId(userRegisterVo.getGithubId())
                 .resume("这个人还没有填写个人简介呢")
                 .tenantId(userRegisterVo.getTenantId())
                 .context(false)
@@ -400,6 +402,34 @@ public class UserServiceImpl implements UserService {
         SpringUtils.publishEvent(new UserRegisterEvent(this, newUser));
 		return true;
     }
+
+	@Override
+	@Transactional
+	public Boolean bindOAuth(UserRegisterVo userRegisterVo) {
+		User user = userDao.getByEmail(userRegisterVo.getEmail());
+		if (user == null) {
+			return false;
+		}
+		boolean update = false;
+		if (StrUtil.isNotBlank(userRegisterVo.getGiteeId())) {
+			user.setGiteeId(userRegisterVo.getGiteeId());
+			update = true;
+		}
+		if (StrUtil.isNotBlank(userRegisterVo.getGithubId())) {
+			user.setGithubId(userRegisterVo.getGithubId());
+			update = true;
+		}
+		if (StrUtil.isNotBlank(userRegisterVo.getGitcodeId())) {
+			user.setGitcodeId(userRegisterVo.getGitcodeId());
+			update = true;
+		}
+		if (update) {
+			userDao.updateById(user);
+			userCache.delete(user.getId());
+			userSummaryCache.delete(user.getId());
+		}
+		return true;
+	}
 
     @Override
     @Transactional(rollbackFor = Exception.class)

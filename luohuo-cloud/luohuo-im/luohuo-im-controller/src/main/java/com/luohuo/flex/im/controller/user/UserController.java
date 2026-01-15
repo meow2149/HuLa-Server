@@ -81,6 +81,12 @@ public class UserController {
         return R.success(userService.register(userRegisterVo));
     }
 
+    @PostMapping("/bindOAuth")
+    @TenantIgnore
+    public R<Boolean> bindOAuth(@RequestBody UserRegisterVo userRegisterVo){
+        return R.success(userService.bindOAuth(userRegisterVo));
+    }
+
     @GetMapping("/userInfo")
     @Operation(summary ="用户详情")
     public R<UserInfoResp> getUserInfo() {

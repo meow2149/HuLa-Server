@@ -929,6 +929,9 @@ public class RoomAppServiceImpl implements RoomAppService, InitializingBean {
 				item.setItemIds(user.getItemIds());
 				item.setUserType(user.getUserType());
 				item.setWearingItemId(user.getWearingItemId());
+				item.setLinkedGitee(user.getLinkedGitee());
+				item.setLinkedGithub(user.getLinkedGithub());
+				item.setLinkedGitcode(user.getLinkedGitcode());
 			}
 		});
 

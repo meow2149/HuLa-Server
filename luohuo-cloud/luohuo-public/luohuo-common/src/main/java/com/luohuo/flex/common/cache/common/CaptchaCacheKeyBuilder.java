@@ -47,6 +47,6 @@ public class CaptchaCacheKeyBuilder implements CacheKeyBuilder {
 
     @Override
     public Duration getExpire() {
-        return Duration.ofMinutes(15);
+        return Duration.ofMinutes(5);
     }
 }

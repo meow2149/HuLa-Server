@@ -66,4 +66,13 @@ public class ChatMemberResp implements Serializable {
 	 */
 	@Schema(description = "用户类型")
 	private Integer userType;
+
+	@Schema(description = "是否绑定Gitee")
+	private Boolean linkedGitee;
+
+	@Schema(description = "是否绑定Github")
+	private Boolean linkedGithub;
+
+	@Schema(description = "是否绑定GitCode")
+	private Boolean linkedGitcode;
 }

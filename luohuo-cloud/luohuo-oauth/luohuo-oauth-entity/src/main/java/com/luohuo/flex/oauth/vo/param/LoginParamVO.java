@@ -73,4 +73,7 @@ public class LoginParamVO {
      */
     @Schema(description = "刷新token")
     private String refreshToken;
+
+    @Schema(description = "回调地址")
+    private String redirectUri;
 }

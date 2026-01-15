@@ -91,6 +91,21 @@ public class SysUser extends TenantEntity<Long> implements Serializable, EchoVO 
     @Schema(description = "钉钉OpenId")
     @TableField(value = "dd_open_id", condition = LIKE)
     private String ddOpenId;
+
+    /**
+     * Gitee OpenId
+     */
+    @Schema(description = "Gitee OpenId")
+    @TableField(value = "gitee_open_id", condition = LIKE)
+    private String giteeOpenId;
+
+    /**
+     * GitHub OpenId
+     */
+    @Schema(description = "GitHub OpenId")
+    @TableField(value = "github_open_id", condition = LIKE)
+    private String githubOpenId;
+
     /**
      * 内置;[0-否 1-是]
      */

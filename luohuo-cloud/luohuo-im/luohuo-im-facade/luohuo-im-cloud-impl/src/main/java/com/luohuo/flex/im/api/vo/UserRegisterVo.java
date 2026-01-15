@@ -15,6 +15,10 @@ public class UserRegisterVo {
     private Integer sex;
 
     private Long userStateId;
-	private Long tenantId;
+    private Long tenantId;
     private Integer userType;
+
+    private String giteeId;
+    private String githubId;
+    private String gitcodeId;
 }

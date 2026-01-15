@@ -72,6 +72,23 @@ public class User extends Entity<Long> {
 	private String openId;
 
 	/**
+	 * gitee用户标识
+	 */
+	@TableField("gitee_id")
+	private String giteeId;
+
+	/**
+	 * github用户标识
+	 */
+	@TableField("github_id")
+	private String githubId;
+	/**
+	 * gitcode用户标识
+	 */
+	@TableField("gitcode_id")
+	private String gitcodeId;
+
+	/**
 	 * 个人简介
 	 */
 	@TableField("resume")

@@ -1,5 +1,6 @@
 package com.luohuo.flex.im.core.user.service.cache;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.luohuo.basic.tenant.core.aop.TenantIgnore;
 import com.luohuo.flex.im.common.constant.RedisKey;
@@ -90,6 +91,12 @@ public class UserSummaryCache extends AbstractRedisStringCache<Long, SummeryInfo
             summeryInfoDTO.setSex(user.getSex());
             summeryInfoDTO.setResume(user.getResume());
             summeryInfoDTO.setLastOptTime(user.getLastOptTime());
+            summeryInfoDTO.setGiteeId(user.getGiteeId());
+            summeryInfoDTO.setGithubId(user.getGithubId());
+            summeryInfoDTO.setGitcodeId(user.getGitcodeId());
+            summeryInfoDTO.setLinkedGitee(StrUtil.isNotBlank(user.getGiteeId()));
+            summeryInfoDTO.setLinkedGithub(StrUtil.isNotBlank(user.getGithubId()));
+            summeryInfoDTO.setLinkedGitcode(StrUtil.isNotBlank(user.getGitcodeId()));
             if (Objects.equals(user.getUserType(), UserTypeEnum.BOT.getValue())) {
                 summeryInfoDTO.setWearingItemId(null);
                 summeryInfoDTO.setItemIds(Collections.emptyList());

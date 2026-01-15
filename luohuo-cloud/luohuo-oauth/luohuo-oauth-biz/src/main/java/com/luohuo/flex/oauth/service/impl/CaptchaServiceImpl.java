@@ -3,6 +3,7 @@ package com.luohuo.flex.oauth.service.impl;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
+import com.luohuo.basic.cache.lock.DistributedLock;
 import com.luohuo.basic.cache.repository.CachePlusOps;
 import com.luohuo.basic.utils.TimeUtils;
 import com.luohuo.flex.model.vo.query.BindEmailReq;
@@ -13,11 +14,9 @@ import com.wf.captcha.ChineseGifCaptcha;
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import com.luohuo.basic.base.R;
 import com.luohuo.basic.cache.redis2.CacheResult;
@@ -33,6 +32,7 @@ import com.luohuo.flex.oauth.service.CaptchaService;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import static com.luohuo.basic.exception.code.ResponseEnum.CAPTCHA_ERROR;
 
@@ -53,6 +53,12 @@ public class CaptchaServiceImpl implements CaptchaService {
     private final CaptchaProperties captchaProperties;
     private final MsgFacade msgFacade;
     private final DefUserService defUserService;
+	private final DistributedLock distributedLock;
+
+	private static final int CAPTCHA_EXPIRE_SECONDS = 5 * 60;
+	private static final int SEND_COUNT_WINDOW_HOURS = 24;
+	private static final int RESEND_INTERVAL_SECONDS_FIRST_THREE = 60;
+	private static final int RESEND_INTERVAL_SECONDS_AFTER_THREE = 5 * 60;
 
     /**
      * 注意验证码生成需要服务器支持，若您的验证码接口显示不出来，
@@ -111,8 +117,10 @@ public class CaptchaServiceImpl implements CaptchaService {
             ArgumentAssert.isFalse(flag, "该手机号已经被他人使用");
         }
 
-        String code = RandomUtil.randomNumbers(4);
         CacheKey cacheKey = CaptchaCacheKeyBuilder.build(mobile, templateCode);
+		assertSendAllowed(cacheKey);
+
+        String code = RandomUtil.randomNumbers(4);
         // cacheKey.setExpire(Duration.ofMinutes(15));  // 可以修改有效期
         cachePlusOps.set(cacheKey, code);
 
@@ -142,17 +150,15 @@ public class CaptchaServiceImpl implements CaptchaService {
 //		CacheResult<String> result = cachePlusOps.get(imgKey);
 //		ArgumentAssert.isFalse(!bindEmailReq.getCode().equals(result.getValue()), "图片验证码错误");
 
-		String code = RandomUtil.randomNumbers(6);
         CacheKey cacheKey = CaptchaCacheKeyBuilder.build(bindEmailReq.getEmail(), bindEmailReq.getTemplateCode());
-		if(cachePlusOps.exists(cacheKey)){
-			ArgumentAssert.isFalse(true, "验证码还剩"+cachePlusOps.ttl(cacheKey)+"秒过期，可以继续使用");
-		}
+		assertSendAllowed(cacheKey);
 
+		String code = RandomUtil.randomNumbers(6);
         cachePlusOps.set(cacheKey, code);
         log.info("邮件验证码 cacheKey={}, code={}", cacheKey, code);
 
         // 在「运营平台」-「消息模板」配置一个「模板标识」为 templateCode， 且「模板内容」中需要有 code 占位符
-		int expireTime = 1800;
+		int expireTime = CAPTCHA_EXPIRE_SECONDS;
         ExtendMsgSendVO msgSendVO = ExtendMsgSendVO.builder().code(bindEmailReq.getTemplateCode()).build();
         msgSendVO.addParam("emailCode", code);
 		msgSendVO.addParam("systemName", configService.get("systemName"));
@@ -203,10 +209,23 @@ public class CaptchaServiceImpl implements CaptchaService {
         return captcha;
     }
 
-    private void setHeader(HttpServletResponse response) {
-        response.setContentType(captchaProperties.getType().getContentType());
-        response.setHeader(HttpHeaders.PRAGMA, "No-cache");
-        response.setHeader(HttpHeaders.CACHE_CONTROL, "No-cache");
-        response.setDateHeader(HttpHeaders.EXPIRES, 0L);
-    }
+	private void assertSendAllowed(CacheKey captchaKey) {
+		String lockKey = captchaKey.getKey() + ":send_lock";
+		boolean locked = distributedLock.lock(lockKey, 3000);
+		ArgumentAssert.isTrue(locked, "操作频繁，请稍后重试");
+		try {
+			CacheKey resendLockKey = new CacheKey(captchaKey.getKey() + ":resend_lock");
+			if (Boolean.TRUE.equals(cachePlusOps.exists(resendLockKey))) {
+				Long ttl = cachePlusOps.ttl(resendLockKey);
+				long seconds = ttl == null || ttl < 0 ? 0 : ttl;
+				ArgumentAssert.isFalse(true, "请{}秒后再试", seconds);
+			}
+
+			int sendCount = cachePlusOps.integerInc(captchaKey.getKey() + ":send_count", SEND_COUNT_WINDOW_HOURS, TimeUnit.HOURS);
+			int intervalSeconds = sendCount <= 3 ? RESEND_INTERVAL_SECONDS_FIRST_THREE : RESEND_INTERVAL_SECONDS_AFTER_THREE;
+			cachePlusOps.integerInc(resendLockKey.getKey(), intervalSeconds, TimeUnit.SECONDS);
+		} finally {
+			distributedLock.releaseLock(lockKey);
+		}
+	}
 }

@@ -40,8 +40,13 @@ public class ImUserApiFallback implements ImUserApi {
         throw BizException.wrap("注册失败");
     }
 
-	@Override
-	public R<Boolean> refreshIpInfo(RefreshIpInfo refreshIpInfo) {
-		return R.success(true);
-	}
+    @Override
+    public R<Boolean> bindOAuth(UserRegisterVo userRegisterVo) {
+        return R.success(true);
+    }
+
+    @Override
+    public R<Boolean> refreshIpInfo(RefreshIpInfo refreshIpInfo) {
+        return R.success(true);
+    }
 }

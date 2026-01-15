@@ -54,6 +54,24 @@ public class SummeryInfoDTO {
 	@Schema(description = "最后一次上下线时间")
 	private LocalDateTime lastOptTime;
 
+	@Schema(description = "gitee用户标识")
+	private String giteeId;
+
+	@Schema(description = "github用户标识")
+	private String githubId;
+
+	@Schema(description = "gitcode用户标识")
+	private String gitcodeId;
+
+	@Schema(description = "是否绑定gitee")
+	private Boolean linkedGitee;
+
+	@Schema(description = "是否绑定github")
+	private Boolean linkedGithub;
+
+	@Schema(description = "是否绑定gitcode")
+	private Boolean linkedGitcode;
+
 	public static SummeryInfoDTO skip(Long uid) {
         SummeryInfoDTO dto = new SummeryInfoDTO();
         dto.setUid(uid);

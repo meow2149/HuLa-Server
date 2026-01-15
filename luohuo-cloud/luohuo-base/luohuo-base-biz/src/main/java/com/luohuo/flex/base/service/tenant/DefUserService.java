@@ -209,26 +209,26 @@ public interface DefUserService extends SuperCacheService<Long, DefUser> {
     String register(DefUser defUser);
 
     /**
-     * 注册
+     * 分页查询用户
      *
-     * @param defUser
-     * @return
-     */
-    String registerByEmail(DefUser defUser);
-
-    /**
-     * 查找同一企业下的用户
-     *
-     * @param params
-     * @return
+     * @param params 分页参数
+     * @return 分页数据
      */
     IPage<DefUserResultVO> pageUser(PageParams<DefUserPageQuery> params);
 
     /**
-     * 邀请员工进入企业前精确查询用户
+     * 查询用户列表
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return 用户列表
      */
     List<DefUserResultVO> queryUser(DefUserPageQuery params);
+
+    /**
+     * 注册用户（邮箱）
+     *
+     * @param defUser 用户信息
+     * @return 注册成功的邮箱
+     */
+    String registerByEmail(DefUser defUser);
 }

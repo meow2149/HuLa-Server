@@ -25,4 +25,13 @@ public class ChatMemberListResp implements Serializable {
     private String avatar;
 	@Schema(description ="账号")
 	private String account;
+
+    @Schema(description = "是否绑定Gitee")
+    private Boolean linkedGitee;
+
+    @Schema(description = "是否绑定Github")
+    private Boolean linkedGithub;
+
+    @Schema(description = "是否绑定GitCode")
+    private Boolean linkedGitcode;
 }

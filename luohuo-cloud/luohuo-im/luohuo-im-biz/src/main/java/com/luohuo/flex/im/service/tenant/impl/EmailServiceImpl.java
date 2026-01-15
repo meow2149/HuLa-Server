@@ -54,7 +54,7 @@ public class EmailServiceImpl implements EmailService {
 		}
 
 		try{
-			long expireTime = 1800;
+			long expireTime = 5 * 60;
 			// 3. 发送邮箱验证码到用户邮箱
 			cachePlusOps.get(CaptchaCacheKeyBuilder.hashBuild("numberCode", req.getUuid()));
 			String time = LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss");

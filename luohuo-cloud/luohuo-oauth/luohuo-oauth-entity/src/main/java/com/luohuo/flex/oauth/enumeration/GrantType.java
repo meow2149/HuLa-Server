@@ -34,6 +34,18 @@ public enum GrantType implements BaseEnum {
      * 手机登录
      */
     MOBILE,
+    /**
+     * Gitee 登录
+     */
+    GITEE,
+    /**
+     * GitHub 登录
+     */
+    GITHUB,
+    /**
+     * GitCode 登录
+     */
+    GITCODE,
     ;
 
     @Schema(description = "描述")

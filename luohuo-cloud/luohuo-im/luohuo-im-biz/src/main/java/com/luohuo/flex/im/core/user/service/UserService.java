@@ -127,4 +127,9 @@ public interface UserService {
 	Boolean bindEmail(Long uid, BindEmailReq req);
 
 	Boolean register(UserRegisterVo userRegisterVo);
+	/**
+	 * 绑定第三方账号
+	 */
+	Boolean bindOAuth(UserRegisterVo userRegisterVo);
+
 }
